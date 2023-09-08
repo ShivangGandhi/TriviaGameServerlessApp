@@ -1,0 +1,29 @@
+image: node
+stages:
+  - build
+  # - test
+  - deploy
+
+build-and-deploy:
+  stage: build
+  tags:
+    - ugrad
+
+  script:
+    - cd frontend
+    - npm install
+    - CI=false npm run build
+    # - npm install vercel
+    # - ./node_modules/.bin/vercel --prod --token $VERCEL_TOKEN --confirm
+    # - npm install netlify-cli
+    # - ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE --prod --dir=build --auth=$NETLIFY_AUTH_TOKEN
+
+  only:
+    - dev
+# test:
+#   stage: test
+#   tags:
+#     - ugrad
+
+#   script:
+#     - npm test
